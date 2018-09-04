@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  build:
+    working_directory: /app
+    docker:
+    - image: docker/compose:1.16.1
+    steps:
+    - checkout
+    - setup_remote_docker
+    - run:
+        name: Build containers
+        command: docker-compose build
+    - run:
+        name: Run lint
+        command: docker-compose run app npm run lint
+    - run:
+        name: Wait for DB start
+        command: docker-compose run wait-for-db
+    - run:
+        name: Run tests
+        command: docker-compose run app npm test
