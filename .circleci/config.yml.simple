@@ -1,0 +1,14 @@
+# The simplest version of CI config
+# Build of production docker image should be done separately
+version: 2
+jobs:
+  test:
+    working_directory: /app
+    docker:
+    - image: node:8.11.4-alpine
+    - image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+    steps:
+    - checkout
+    - run: npm i
+    # We don't have to wait for DB start 'cause `npm i` works quite long
+    - run: npm test

@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    depends_on:
+    - db
+    environment:
+    - ELASTICSEARCH_HOST=http://db:9200
+  db:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+    ports:
+    - 9200:9200
+    - 9300:9300
+    environment:
+    - discovery.type=single-node
+  wait-for-db:
+    image: jwilder/dockerize:0.6.0
+    command: -wait tcp://db:9200 -timeout 30s
+    depends_on:
+    - db
