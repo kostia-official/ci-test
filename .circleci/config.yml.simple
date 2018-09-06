@@ -1,5 +1,5 @@
-# The simplest version of CI config
-# Build of production docker image should be done separately
+# The simplest version of CI config when you just need to run tests.
+# Build of production artifacts should be done separately.
 version: 2
 jobs:
   test:

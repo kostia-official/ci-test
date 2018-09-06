@@ -1,3 +1,7 @@
+# The test environment was set up in docker-compose.yml which gives the ability
+# to use the same config for remote and local tests.
+# Specifics of the server environment were set up in Dockerfile which gives the ability
+# to use the same docker container in production and for tests.
 version: 2
 jobs:
   build:
@@ -5,8 +9,8 @@ jobs:
     docker:
     - image: docker/compose:1.16.1
     steps:
-    - checkout
-    - setup_remote_docker
+    - checkout            # Pull the code of the app
+    - setup_remote_docker # Creates isolated environment
     - run:
         name: Build containers
         command: docker-compose build
