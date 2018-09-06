@@ -1,0 +1,14 @@
+# The simplest version of CI config when you just need to run tests.
+# Build of production artifacts should be done separately.
+pipeline:
+  app:
+    image: node:8.11.4-alpine
+    commands:
+    - npm install
+    - npm run lint
+    - npm test
+    environment:
+    - ELASTICSEARCH_HOST=http://elasticseach:9200
+services:
+  elasticseach:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0

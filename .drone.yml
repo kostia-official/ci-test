@@ -1,0 +1,11 @@
+# Drone.io doesn't provide environment isolation as with CircleCI. It should be configured manually
+pipeline:
+  build:
+    image: docker/compose:1.16.1
+    commands:
+    - docker-compose build
+    - docker-compose run app npm run lint
+    - docker-compose run wait-for-db
+    - docker-compose run app npm test
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock # Add ability to run docker containers from containers
