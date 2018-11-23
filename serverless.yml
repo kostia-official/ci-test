@@ -17,4 +17,4 @@ functions:
       # Proxy all routes to Lambda
       - http: ANY /
       - http: ANY {proxy+}
- 
+
