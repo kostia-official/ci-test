@@ -1,0 +1,20 @@
+service: test-delete-me
+provider:
+  name: aws
+  runtime: nodejs8.10 # The latest Node.js version
+  region: us-east-2
+  memorySize: 256
+  environment:
+    EXECUTION_MODE: lambda # Start the server in Lambda mode
+    DEBUG: app* # Print logs with using https://www.npmjs.com/package/debug
+functions:
+  api:
+    handler: build/server.handler
+    # Proxy all routes to Lambda
+    events:
+      # Run Lambda by schedule to prevent long cold starts
+      - schedule: rate(5 minutes)
+      # Proxy all routes to Lambda
+      - http: ANY /
+      - http: ANY {proxy+}
+ 
