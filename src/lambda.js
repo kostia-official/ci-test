@@ -1,6 +1,6 @@
 const serverlessExpress = require('aws-serverless-express');
-const app = require('./server');
 const debug = require('debug')('app:lambda');
+const app = require('./server');
 
 const server = serverlessExpress.createServer(app);
 
