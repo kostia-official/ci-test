@@ -1,4 +1,4 @@
-service: test-delete-me
+service: test-ci-cd
 provider:
   name: aws
   runtime: nodejs8.10 # The latest Node.js version
