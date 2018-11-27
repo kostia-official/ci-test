@@ -2,7 +2,8 @@ version: 0.2
 phases:
   build:
     commands:
-      - docker-compose build
-      - docker-compose run app npm run lint
-      - docker-compose run wait-for-db
-      - docker-compose run app npm test 
+      - echo "skip"
+#      - docker-compose build
+#      - docker-compose run app npm run lint
+#      - docker-compose run wait-for-db
+#      - docker-compose run app npm test
