@@ -5,4 +5,4 @@ phases:
       - docker-compose build
       - docker-compose run app npm run lint
       - docker-compose run wait-for-db
-      - docker-compose run app npm test
+      - docker-compose run app npm test 
