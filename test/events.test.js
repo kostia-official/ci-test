@@ -1,8 +1,8 @@
-import server from '../src/server/server';
+import index from '../src/server/index';
 import mockData from '../src/server/events/mock-data';
 import supertest from 'supertest';
 
-const request = supertest(server);
+const request = supertest(index);
 
 it('respond with events', async () => {
   const { body } = await request.get('/events');
